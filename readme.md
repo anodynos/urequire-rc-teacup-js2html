@@ -2,7 +2,7 @@
 
 # Introduction
 
-uRequire ResourceConverter that converts `*.teacup` (that were previously converted to `.js` with [`teacup-js`](npmjs.org/package/urequire-rc-teacup-js)) to `.html`.
+uRequire ResourceConverter that converts `*.teacup` (that were previously converted to `.js` with [`teacup-js`](http://npmjs.org/package/urequire-rc-teacup-js)) to `.html`.
 
 Essentially it loads the `.js` dest module (cleanly each time with `Module::requireClean`) and invokes the exported function, passing any args.
 
