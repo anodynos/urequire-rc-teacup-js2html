@@ -1,10 +1,12 @@
-# Introduction
+# urequire-rc-teacup-js
+
+## Introduction
 
 [uRequire](http://urequire.org) [ResourceConverter](http://urequire.org/resourceconverters.coffee) that converts `*.teacup` (that were previously converted to `.js` with [`teacup-js`](http://npmjs.org/package/urequire-rc-teacup-js)) to `.html`.
 
-Essentially it loads the `.js` dest module (cleanly each time with `Module::requireClean`) and invokes the exported function, passing any args.
+Essentially it loads the `.js` module (cleanly each time with `Module::requireClean`) and invokes the exported template function, passing the right args.
 
-# Usage
+## Usage
 
 ```
     $ npm install urequire-rc-teacup-js2html --save
@@ -16,16 +18,37 @@ To simply convert all `*.teacup` to `.html` :
  resources: [ ..., 'teacup-js', 'teacup-js2html'...]
 ```
 
-Options supported:
+## Options
 
 ```javascript
     resources: [
       ['teacup-js2html', {
         deleteJs: true                  // deletes the .js module after .html conversion
-        args: ['1stArg', '2ndArg', ...] // arguments to pass to template function
+        args: ['1stArg', '2ndArg', ...] // arguments to pass to template function for all templates
       }]
     ]
 ```
+
+To pass different args to different module/templates, use this args options syntax:
+
+```javascript
+    resources: [
+      ['teacup-js2html', {
+
+        args: {
+             'some/minimatch/string/**/*': ['1stArg', '2ndArg', ...]
+
+             whateverLabel:
+                isFileIn: ['**/some/minimatch/string/*', /.SomeRegExp/, '!', (f)-> f is 'not/this/file']
+                args: ['1stArg', '2ndArg', ...]
+        }
+      }]
+    ]
+```
+
+For the full `isFileIn` syntax, see [`is_file_in`](http://github.com/anodynos/is_file_in).
+
+Note: your previously converted `.js` with [`teacup-js`](http://npmjs.org/package/urequire-rc-teacup-js)) must be build with either 'nodejs' or 'UMD' templates, because it is `require`-d by uRequire on the nodejs environment. Specifically the `combined` and `AMD` templates are not supported. You templates can still be used as converted to AMD on web though.
 
 # License
 
