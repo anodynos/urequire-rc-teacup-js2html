@@ -1,7 +1,7 @@
 {
   "name": "urequire-rc-teacup-js2html",
   "description": "uRequire ResourceConverter that converts `*.teacup` to `.html`.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "homepage": "http://uRequire.org",
   "author": {
     "name": "Agelos Pikoulas",
@@ -35,6 +35,9 @@
   "engines": {
     "node": "0.10.x"
   },
+  "peerDependencies": {
+    "urequire": "^0.7.0-beta.14"
+  },  
   "dependencies": {
     "uberscore": "0.0.16",
     "is_file_in": "*"
